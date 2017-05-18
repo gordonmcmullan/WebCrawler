@@ -1,0 +1,10 @@
+@ECHO OFF
+SETLOCAL
+SET PYTHONPATH=%PYTHONPATH%;%cd%\src\
+SET PATH=%PYTHEONPATH%;%PATH%
+ECHO %PYTHONPATH%
+cd test
+python -m unittest discover ./
+cd ..
+ENDLOCAL
+ECHO ON

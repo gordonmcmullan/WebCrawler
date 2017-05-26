@@ -90,5 +90,24 @@ class Test_Page(unittest.TestCase):
         mypage = Page(target)
         self.assertSetEqual(mypage.form_targets, set(["http://localhost:9999/hasformwithoutaction.html"]))
 
+    def test_form_with_button_with_formaction(self):
+        target = "http://localhost:9999/hasformwithbuttonactionoverride.html"
+        mypage = Page(target)
+        self.assertSetEqual(mypage.form_targets, set(["/formaction", "/button-override"]))
+
+    def test_form_with_input_with_formaction(self):
+        target = 'http://localhost:9999/hasformwithactionoverride.html'
+        mypage=Page(target)
+        result = mypage.form_targets
+        expected = set(["/formaction", "/overrideaction"])
+        self.assertSetEqual(result, expected)
+
+    def test_form_with_multiple_formactions(self):
+        target = "http://localhost:9999/hasformwithbuttonandinputactionoverride.html"
+        mypage = Page(target)
+        result = mypage.form_targets
+        expected = set(["/formaction", "/button-override", "/input-override"])
+        self.assertSetEqual(result, expected)
+
 if __name__ == '__main__':
     unittest.main()

@@ -96,8 +96,22 @@ class Page:
             target = form.get('action')
             target = target if target else self.url
             form_targets.add(target)
+            form_targets = form_targets.union(self.getformactions(form))
         return form_targets
 
+    def getformactions(self, form):
+        """
+
+        :param form: a form tag
+        :return: a list of 'formaction' attributes
+        """
+        formactions = []
+        overridable_elements = form.find_all(['input', 'button'])
+        for elem in overridable_elements:
+            formaction = elem.get('formaction')
+            if formaction:
+                formactions.append(formaction)
+        return set(formactions)
 
     def getresources(self):
         """

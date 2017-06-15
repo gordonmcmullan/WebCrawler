@@ -46,24 +46,29 @@ class Test_Page(unittest.TestCase):
     def test_page_with_one_link(self):
         target = "http://localhost:9999/onelink.html"
         mypage = Page(target)
-        self.assertSetEqual(mypage.links,set(["http://localhost/nextpage"]))
+        self.assertSetEqual(mypage.links, set(["http://localhost/nextpage"]))
 
     def test_unsupported_scheme(self):
         target = "http://localhost:9999/unsupported_scheme.html"
         mypage = Page(target)
-        self.assertSetEqual(mypage.links,set([]))
+        self.assertSetEqual(mypage.links, set([]))
 
     def test_server_relative_link(self):
         target = "http://localhost:9999/server_relative_link.html"
         target_url = urlparse(target)
         testlink = urlbuild((target_url.scheme, target_url.netloc, "/nextpage.html", "", "", ""))
         mypage = Page(target)
-        self.assertSetEqual(mypage.links,set([testlink]))
+        self.assertSetEqual(mypage.links, set([testlink]))
 
     def test_relative_link(self):
         target = "http://localhost:9999/page_relative_link.html"
         mypage = Page(target)
-        self.assertSetEqual(mypage.links,set(["http://localhost:9999/nextpage.html"]))
+        self.assertSetEqual(mypage.links, set(["http://localhost:9999/nextpage.html"]))
+
+    def test_relative_link_in_a_folder(self):
+        target = "http://localhost:9999/folder/inafolder.html"
+        mypage = Page(target)
+        self.assertSetEqual(mypage.links, set(["http://localhost:9999/folder/nextpage.html"]))
 
     def test_image(self):
         target = "http://localhost:9999/hasimage.html"

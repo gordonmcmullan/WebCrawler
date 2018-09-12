@@ -1,8 +1,8 @@
-##Simple Webcrawler
+## Simple Webcrawler
 This is a simple python web crawler, which will start at a given target page and crawl links from that page and any 
 subsequent page.
 
-###Installation
+### Installation
 setup and configure a Python 3.5 virtualenv environment and use 
 pip to install the requirements in the requirements.txt file.
 
@@ -16,7 +16,7 @@ pip to install the requirements in the requirements.txt file.
 
 `pip install -r requirements.txt`
 
-###Usage
+### Usage
 `python web_crawler.py [--target] <start_url> --logging_level`
 
 Default domain is https://google.com
@@ -31,7 +31,7 @@ INFO     | 20
 DEBUG    | 10
 NOTSET   |  0
 
-###Limitations
+### Limitations
 
 &lt;img&gt;, &lt;script&gt;, and &lt;link rel='stylesheet'&gt; tags are currently parsed for resources.
 

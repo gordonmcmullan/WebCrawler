@@ -137,4 +137,7 @@ ENV/
 #Idea file with personal data
 /.idea/workspace.xml
 /.idea/tasks.xml
+/.idea/misc.xml
 /src/output.json
+
+.iml

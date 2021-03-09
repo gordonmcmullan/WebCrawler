@@ -18,6 +18,7 @@ class TestHttpServer():
 
     def __init__(self):
         self.thread = Thread(group=None, target=self.run, args=())
+        self.thread.daemon = True
         self.thread.start()
 
     def run(self):
